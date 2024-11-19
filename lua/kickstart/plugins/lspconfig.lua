@@ -180,8 +180,16 @@ return {
       vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = require('custom.style').border })
       -- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = require('custom.style').border })
 
+      -- mpja69: Add border to the diagnostic popup window
+      vim.diagnostic.config {
+        virtual_text = {
+          prefix = '■ ', -- Could be '●', '▎', 'x', '■', , 
+        },
+        float = { border = require('custom.style').border },
+      }
+
       local servers = {
-        -- mpja69: Added some language servers. This table is passed to "mason-tool_installer", which handles the installantion
+        -- mpja69: Added some language servers.
         clangd = {},
         gopls = {},
         pyright = {},
@@ -243,11 +251,4 @@ return {
     end,
   },
 }
--- -- mpja69: Add border to the diagnostic popup window
--- vim.diagnostic.config {
---   virtual_text = {
---     prefix = '■ ', -- Could be '●', '▎', 'x', '■', , 
---   },
---   float = { border = border },
--- }
 -- vim: ts=2 sts=2 sw=2 et

@@ -175,10 +175,16 @@ return {
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
+      -- mpja69: Add the border on hover and on signature help popup window
+      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = require('custom.style').border })
+      -- vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = require('custom.style').border })
+
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
+        -- mpja69: Added some language servers. This table is passed to "mason-tool_installer", which handles the installantion
+        clangd = {},
+        gopls = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -186,7 +192,7 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
         --
 
         lua_ls = {
@@ -199,7 +205,8 @@ return {
                 callSnippet = 'Replace',
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+              -- mpja69:
+              diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
@@ -236,4 +243,11 @@ return {
     end,
   },
 }
+-- -- mpja69: Add border to the diagnostic popup window
+-- vim.diagnostic.config {
+--   virtual_text = {
+--     prefix = '■ ', -- Could be '●', '▎', 'x', '■', , 
+--   },
+--   float = { border = border },
+-- }
 -- vim: ts=2 sts=2 sw=2 et

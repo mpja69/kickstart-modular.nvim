@@ -15,6 +15,8 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- mpja69: Used this keymap before
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -45,4 +47,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- mpja69:
+vim.keymap.set('n', '<leader>sc', '<cmd>TodoTelescope<cr>', { desc = '[C] Todo-comments' })
 -- vim: ts=2 sts=2 sw=2 et

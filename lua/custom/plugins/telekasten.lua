@@ -10,8 +10,12 @@ return {
       home = vim.fn.expand '~/telekasten', -- Put the name of your notes directory here
     }
     -- Document existing key chains
-    require('which-key').register {
-      ['<leader>z'] = { name = '[Z]ettelkasten', _ = 'which_key_ignore' },
+    require('which-key').add {
+      -- mpja69: next
+      { '<leader>z', group = '[Z]ettelkasten' },
+      { '<leader>z_', hidden = true },
+      -- { '', group = '[Z]ettelkasten' },
+      -- { '', desc = '<leader>z_', hidden = true },
     }
 
     vim.api.nvim_create_autocmd('BufEnter', {
